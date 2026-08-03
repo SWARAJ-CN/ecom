@@ -4,7 +4,7 @@ import Image from "next/image";
 const Navbar = () => {
   return (
     <nav className="w-full bg-white shadow">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
+      <div className="py-5 px-20  flex items-center justify-between">
         <p className="font-extrabold text-xl sm:text-2xl md:text-3xl italic tracking-tight">
           FashionHub
         </p>

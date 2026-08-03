@@ -56,7 +56,7 @@ const Card = () => {
   };
 
   return (
-    <div className="w-full max-w-7xl mx-auto flex flex-col gap-6 mt-5   pb-10">
+    <div className="w-full  px-20 py-5 flex flex-col gap-6 ">
       <div className="w-full flex flex-col sm:flex-row justify-between gap-4">
         <select
           value={priceSort}
@@ -88,19 +88,19 @@ const Card = () => {
         </div>
       ) : (
         <>
-          <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="w-full   grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[20px]">
             {currentDisplayedProducts.length > 0 ? (
               currentDisplayedProducts.map((product) => (
                 <div
                   onClick={() => route.push(`/product/${product.id}`)}
                   key={product.id}
-                  className="relative cursor-pointer flex flex-col border border-gray-200 rounded-2xl overflow-hidden hover:shadow-lg transition-shadow duration-300 bg-white"
+                  className="w-76.25 h-122 relative cursor-pointer flex flex-col border border-gray-200 rounded-2xl overflow-hidden hover:shadow-lg transition-shadow duration-300 bg-white"
                 >
                   <div className="bg-white flex items-center justify-center cursor-pointer h-10 w-10 rounded-full absolute right-3 top-3 z-10 shadow-sm hover:bg-gray-50 transition-colors">
                     <Heart className="w-5 h-5 text-gray-700" />
                   </div>
 
-                  <div className="w-full h-48 bg-gray-100 flex justify-center items-center overflow-hidden">
+                  <div className="w-full h-[303.12px] bg-gray-100 flex justify-center items-center overflow-hidden">
                     {product.image || product.imageUrl ? (
                       <Image
                         // src={product.image || product.imageUrl} 
@@ -169,7 +169,7 @@ const Card = () => {
           </div>
 
           {totalPages > 1 && (
-            <div className="w-full flex justify-center items-center gap-4 mt-8">
+            <div className="w-full flex justify-center items-center gap-4 mt-8 pb-25">
               <button
                 onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
                 disabled={currentPage === 1}
