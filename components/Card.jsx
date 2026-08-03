@@ -74,11 +74,11 @@ const Card = () => {
           className="w-full sm:w-auto rounded-full bg-white px-5 py-2.5 border border-[#E0E0E0] outline-none cursor-pointer text-sm font-medium"
         >
           <option value="">All Headphone Types</option>
-          {uniqueTypes.map((type, index) => (
-            <option key={index} value={type}>
-              {type}
+          {/* {uniqueTypes.map((type, index) => ( */}
+            <option >  {/* key={index} value={type}*/}
+              {/* {type} */}
             </option>
-          ))}
+          {/* ))} */}
         </select>
       </div>
 

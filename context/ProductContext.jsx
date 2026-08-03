@@ -24,7 +24,7 @@ export const ProductProvider = ( {children} ) =>{
         } finally {
         setLoading(false);
         }
-    };
+        };
 
         useEffect(() => {
             getProduct();
