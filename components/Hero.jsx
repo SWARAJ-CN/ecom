@@ -19,7 +19,7 @@ const Hero = () => {
           alt="hero-image"
           
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-          className="object-cover h-full md:h-110 w-full absolute -top-30"
+          className="object-cover h-full md:h-110 w-full absolute md:-top-30"
         />
       </div>
     </div>
