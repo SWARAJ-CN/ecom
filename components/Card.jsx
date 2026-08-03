@@ -56,8 +56,8 @@ const Card = () => {
   };
 
   return (
-    <div className="w-full  px-20 py-5 flex flex-col gap-6 ">
-      <div className="w-full flex flex-col sm:flex-row justify-between gap-4">
+    <div className="w-full px-4 sm:px-6 lg:px-8 py-5 flex flex-col gap-6 items-center">
+      <div className="w-full max-w-7xl pb-5 flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4">
         <select
           value={priceSort}
           onChange={handlePriceSortChange}
@@ -74,11 +74,7 @@ const Card = () => {
           className="w-full sm:w-auto rounded-full bg-white px-5 py-2.5 border border-[#E0E0E0] outline-none cursor-pointer text-sm font-medium"
         >
           <option value="">All Headphone Types</option>
-          {/* {uniqueTypes.map((type, index) => ( */}
-            <option >  {/* key={index} value={type}*/}
-              {/* {type} */}
-            </option>
-          {/* ))} */}
+          <option></option>
         </select>
       </div>
 
@@ -88,23 +84,21 @@ const Card = () => {
         </div>
       ) : (
         <>
-          <div className="w-full   grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[20px]">
+          <div className="w-full max-w-7xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 justify-items-center">
             {currentDisplayedProducts.length > 0 ? (
               currentDisplayedProducts.map((product) => (
                 <div
                   onClick={() => route.push(`/product/${product.id}`)}
                   key={product.id}
-                  className="w-76.25 h-122 relative cursor-pointer flex flex-col border border-gray-200 rounded-2xl overflow-hidden hover:shadow-lg transition-shadow duration-300 bg-white"
+                  className="w-full max-w-76.25 min-h-122 relative cursor-pointer flex flex-col border border-gray-200 rounded-2xl overflow-hidden hover:shadow-lg transition-shadow duration-300 bg-white"
                 >
                   <div className="bg-white flex items-center justify-center cursor-pointer h-10 w-10 rounded-full absolute right-3 top-3 z-10 shadow-sm hover:bg-gray-50 transition-colors">
                     <Heart className="w-5 h-5 text-gray-700" />
                   </div>
 
-                  <div className="w-full h-[303.12px] bg-gray-100 flex justify-center items-center overflow-hidden">
+                  <div className="w-full h-75.75 bg-gray-100 flex justify-center items-center overflow-hidden relative">
                     {product.image || product.imageUrl ? (
                       <Image
-                        // src={product.image || product.imageUrl} 
-                        //Disabled api images because Next.js blocks external images urls.
                         src={productImages[2]}
                         alt="product-image"
                         width={500}
@@ -150,7 +144,7 @@ const Card = () => {
                       </div>
                     </div>
 
-                    <div className="w-full flex flex-col xl:flex-row justify-between gap-2 mt-3">
+                    <div className="w-full flex flex-col xs:flex-row xl:flex-row justify-between gap-2 mt-3">
                       <button className="w-full bg-[#3A4980] text-white py-2 px-3 text-sm rounded-full cursor-pointer hover:bg-[#2e3b68] transition-colors">
                         Add to Cart
                       </button>
@@ -169,7 +163,7 @@ const Card = () => {
           </div>
 
           {totalPages > 1 && (
-            <div className="w-full flex justify-center items-center gap-4 mt-8 pb-25">
+            <div className="w-full flex justify-center items-center gap-4 mt-8 pb-16 sm:pb-25">
               <button
                 onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
                 disabled={currentPage === 1}

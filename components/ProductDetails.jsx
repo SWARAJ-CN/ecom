@@ -56,28 +56,31 @@ const ProductDetails = ({ id }) => {
       )}
 
       {!loading && (
-        <div className="">
-          <div className="max-w-7xl mx-auto md:px-4 sm:px-6 lg:px-8 py-4 sm:py-8 font-sans">
+        <div className="w-full">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0 py-4 sm:py-8 font-sans">
             <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
               <div className="w-full lg:w-1/2 flex flex-col gap-4">
                 <div className="w-full aspect-4/5 bg-gray-100 rounded-2xl overflow-hidden relative">
                   <Image
                     src={images[mainImageIndex]}
                     alt={product?.title || "Embrace Sideboard"}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
                     className="w-full h-full object-cover"
+                    priority
                   />
                 </div>
-  
+
                 <div className="flex items-center justify-between gap-2 sm:gap-4 mt-2">
                   <button className="p-2 hover:bg-gray-100 rounded-full transition-colors shrink-0">
                     <ChevronLeft className="w-5 h-5 text-gray-600" />
                   </button>
-                  <div className="flex gap-2 sm:gap-4 flex-1 justify-start sm:justify-center overflow-x-auto py-1">
+                  <div className="flex gap-2 sm:gap-4 flex-1 justify-start sm:justify-center overflow-x-auto py-1 no-scrollbar">
                     {productImages.map((img, idx) => (
                       <button
                         key={idx}
                         onClick={() => setMainImageIndex(idx)}
-                        className={`w-16 cursor-pointer h-16 sm:w-20 sm:h-20 shrink-0 rounded-xl overflow-hidden border-2 transition-all ${
+                        className={`w-16 h-16 sm:w-20 sm:h-20 shrink-0 rounded-xl overflow-hidden border-2 transition-all relative ${
                           mainImageIndex === idx
                             ? "border-blue-500 p-0.5"
                             : "border-transparent"
@@ -86,6 +89,8 @@ const ProductDetails = ({ id }) => {
                         <Image
                           src={img}
                           alt={`Thumbnail ${idx}`}
+                          fill
+                          sizes="80px"
                           className="w-full h-full object-cover rounded-lg"
                         />
                       </button>
@@ -96,32 +101,33 @@ const ProductDetails = ({ id }) => {
                   </button>
                 </div>
               </div>
-              <div className="w-full lg:w-1/2 flex flex-col pt-2 ">
-                <nav className="flex flex-wrap items-center gap-2 bg-[#EDF0F8] w-fit rounded text-xs sm:text-sm text-gray-400 mb-6 sm:mb-8">
+
+              <div className="w-full lg:w-1/2 flex flex-col pt-2">
+                <nav className="flex flex-wrap items-center gap-1.5 sm:gap-2 bg-[#EDF0F8] w-fit max-w-full p-1 rounded text-xs sm:text-sm text-gray-400 mb-6 sm:mb-8 overflow-x-auto">
                   <span
                     onClick={() => route.push("/")}
-                    className="hover:text-[#3A4980] cursor-pointer bg-gray-100 px-3 py-1 rounded-md"
+                    className="hover:text-[#3A4980] cursor-pointer bg-gray-100 px-2.5 sm:px-3 py-1 rounded-md shrink-0"
                   >
                     Home
                   </span>
-                  <ChevronRight className="w-4 h-4 shrink-0" />
-                  <span className="hover:text-[#3A4980] cursor-pointer text-gray-400">
+                  <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                  <span className="hover:text-[#3A4980] cursor-pointer text-gray-400 shrink-0">
                     Decoration
                   </span>
-                  <ChevronRight className="w-4 h-4 shrink-0" />
-                  <span className="hover:text-[#3A4980] cursor-pointer text-gray-400">
+                  <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                  <span className="hover:text-[#3A4980] cursor-pointer text-gray-400 shrink-0">
                     Furniture
                   </span>
-                  <ChevronRight className="w-4 h-4 shrink-0" />
-                  <span className="hover:text-[#3A4980] cursor-pointer text-gray-400">
+                  <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                  <span className="hover:text-[#3A4980] cursor-pointer text-gray-400 shrink-0">
                     Storage
                   </span>
-                  <ChevronRight className="w-4 h-4 shrink-0" />
-                  <span className="font-semibold bg-blue-50 px-3 py-1 rounded-md text-blue-900">
+                  <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                  <span className="font-semibold bg-blue-50 px-2.5 sm:px-3 py-1 rounded-md text-blue-900 shrink-0">
                     Sideboard
                   </span>
                 </nav>
-  
+
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 w-full">
                   <div>
                     <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">
@@ -131,10 +137,10 @@ const ProductDetails = ({ id }) => {
                       Teixeira Design Studio
                     </p>
                   </div>
-  
+
                   <div className="flex items-center gap-2">
                     <button className="flex items-center gap-1.5 cursor-pointer bg-[#FFF0F0] text-[#D46F77] px-3 py-1.5 rounded-xl hover:bg-pink-100 transition-colors">
-                      <Heart className="w-4 h-4 " />
+                      <Heart className="w-4 h-4" />
                       <span className="text-sm font-medium">109</span>
                     </button>
                     <button className="p-2 group bg-[#EDF0F8] text-gray-500 cursor-pointer rounded-full hover:bg-gray-100 transition-colors">
@@ -145,9 +151,9 @@ const ProductDetails = ({ id }) => {
                     </button>
                   </div>
                 </div>
-  
+
                 <div className="mt-4 sm:mt-6 flex flex-wrap items-end gap-3">
-                  <div className="flex flex-row items-center gap-15">
+                  <div className="flex flex-row items-center gap-6 sm:gap-15 flex-wrap sm:flex-nowrap">
                     <span className="text-2xl sm:text-3xl font-bold text-blue-900">
                       ${product?.price}
                     </span>
@@ -163,20 +169,21 @@ const ProductDetails = ({ id }) => {
                     </div>
                   </div>
                 </div>
-                <div className="flex flex-row items-center gap-15 mt-5">
-                   <span className="text-gray-400 text-sm line-through">
-                      ${product?.price}
+
+                <div className="flex flex-row items-center gap-4 sm:gap-15 mt-5 flex-wrap sm:flex-nowrap">
+                  <span className="text-gray-400 text-sm line-through">
+                    ${product?.price}
+                  </span>
+                  <p className="text-green-600 text-sm font-medium md:ms-8">
+                    93%{" "}
+                    <span className="text-gray-400 font-normal">
+                      of buyers have recommended this.
                     </span>
-                    <p className="text-green-600 text-sm font-medium md:ms-8">
-                      93%{" "}
-                      <span className="text-gray-400 font-normal">
-                        of buyers have recommended this.
-                      </span>
-                    </p>
+                  </p>
                 </div>
-  
+
                 <hr className="my-6 border-gray-100" />
-  
+
                 <div className="flex flex-col gap-3">
                   <span className="text-gray-400 text-sm">Choose a Color</span>
                   <div className="flex flex-wrap items-center gap-3 sm:gap-4">
@@ -184,7 +191,7 @@ const ProductDetails = ({ id }) => {
                       <button
                         key={idx}
                         onClick={() => setSelectedColor(idx)}
-                        className={`w-9 h-9 sm:w-10 cursor-pointer sm:h-10 rounded-full flex items-center justify-center transition-all ${
+                        className={`w-9 h-9 sm:w-10 sm:h-10 cursor-pointer rounded-full flex items-center justify-center transition-all ${
                           selectedColor === idx
                             ? "ring-2 ring-offset-2 ring-gray-300"
                             : ""
@@ -198,9 +205,9 @@ const ProductDetails = ({ id }) => {
                     ))}
                   </div>
                 </div>
-  
+
                 <hr className="my-6 border-gray-100" />
-  
+
                 <div className="flex flex-col gap-3">
                   <span className="text-gray-400 text-sm">Choose a Size</span>
                   <div className="flex flex-wrap gap-2 sm:gap-3">
@@ -226,7 +233,7 @@ const ProductDetails = ({ id }) => {
                     ))}
                   </div>
                 </div>
-  
+
                 <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
                   <div className="flex items-center justify-between bg-gray-100 rounded-full px-4 py-3 w-full sm:w-32">
                     <button
@@ -245,18 +252,18 @@ const ProductDetails = ({ id }) => {
                       <Plus className="w-4 h-4" />
                     </button>
                   </div>
-  
+
                   <button className="flex-1 bg-[#363B5D] cursor-pointer hover:bg-[#2A2E4B] text-white rounded-full py-3 px-6 flex items-center justify-center gap-2 font-medium transition-colors">
                     <ShoppingBag className="w-5 h-5" />
                     Add To Cart
                   </button>
                 </div>
-  
+
                 <div className="mt-6 sm:mt-8 border border-gray-200 rounded-xl flex flex-col overflow-hidden">
                   <div className="flex items-start gap-4 p-4 border-b border-gray-200">
                     <Truck className="w-6 h-6 text-orange-500 mt-1 shrink-0" />
                     <div className="flex flex-col">
-                      <span className=" text-[#1D364D] font-extrabold">
+                      <span className="text-[#1D364D] font-extrabold">
                         Free Delivery
                       </span>
                       <a
@@ -284,12 +291,12 @@ const ProductDetails = ({ id }) => {
                 </div>
               </div>
             </div>
-  
+
             <div className="mt-12 sm:mt-20 mb-10">
               <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6">
                 Similar Items You Might Also Like
               </h2>
-  
+
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
                 {similarItems.map((item, idx) => (
                   <div
@@ -299,13 +306,17 @@ const ProductDetails = ({ id }) => {
                     <button className="absolute cursor-pointer top-4 right-4 z-10 bg-white p-1.5 rounded-full shadow-sm text-gray-400 hover:text-pink-500 transition-colors">
                       <Heart className="w-4 h-4" />
                     </button>
-  
-                    <div className="w-full aspect-square bg-gray-50 rounded-lg flex items-center justify-center mb-3 overflow-hidden">
-                      <div className="w-full h-full bg-gray-100 flex items-center justify-center text-gray-300 text-xs">
-                        <Image src={productImages[0]} alt="productimage" />
-                      </div>
+
+                    <div className="w-full aspect-square bg-gray-50 rounded-lg flex items-center justify-center mb-3 overflow-hidden relative">
+                      <Image
+                        src={productImages[0]}
+                        alt="productimage"
+                        fill
+                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 16vw"
+                        className="object-cover"
+                      />
                     </div>
-  
+
                     <span className="text-xs text-gray-500 font-medium mb-1 truncate">
                       {item.name}
                     </span>
@@ -315,7 +326,7 @@ const ProductDetails = ({ id }) => {
                     <span className="text-[10px] text-gray-400 mb-2 line-clamp-1">
                       {item.types}
                     </span>
-  
+
                     <div className="flex items-center gap-1">
                       <div className="flex text-yellow-400">
                         {[...Array(5)].map((_, i) => (
