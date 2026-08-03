@@ -1,11 +1,12 @@
 "use client";
 
+import type { ChangeEvent } from "react";
 import { productImages } from "@/assets/assets";
 import { useProductContext } from "@/context/ProductContext";
 import { Heart, Star } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useEffect, useState, useMemo } from "react";
+import { useMemo, useState } from "react";
 
 const Card = () => {
   const route = useRouter();
@@ -18,16 +19,28 @@ const Card = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8;
 
-  const uniqueTypes = useMemo(() => {
-    const types = products.map((p) => p.type || p.category).filter(Boolean);
+  const uniqueTypes = useMemo<string[]>(() => {
+    const types = products
+      .map((p) => p.type || p.category)
+      .filter((value): value is string => Boolean(value));
     return [...new Set(types)];
   }, [products]);
 
   const filteredAndSortedProducts = useMemo(() => {
-    let result = [...products];
+    const result = [...products];
 
     if (selectedType) {
-      result = result.filter((p) => (p.type || p.category) === selectedType);
+      const filtered = result.filter(
+        (p) => (p.type || p.category) === selectedType,
+      );
+
+      if (priceSort === "lowToHigh") {
+        filtered.sort((a, b) => Number(a.price) - Number(b.price));
+      } else if (priceSort === "highToLow") {
+        filtered.sort((a, b) => Number(b.price) - Number(a.price));
+      }
+
+      return filtered;
     }
 
     if (priceSort === "lowToHigh") {
@@ -45,12 +58,12 @@ const Card = () => {
     currentPage * itemsPerPage,
   );
 
-  const handleTypeChange = (e) => {
+  const handleTypeChange = (e: ChangeEvent<HTMLSelectElement>): void => {
     setSelectedType(e.target.value);
     setCurrentPage(1);
   };
 
-  const handlePriceSortChange = (e) => {
+  const handlePriceSortChange = (e: ChangeEvent<HTMLSelectElement>): void => {
     setPriceSort(e.target.value);
     setCurrentPage(1);
   };
@@ -99,7 +112,7 @@ const Card = () => {
                   <div className="w-full h-75.75 bg-gray-100 flex justify-center items-center overflow-hidden relative">
                     {product.image || product.imageUrl ? (
                       <Image
-                        src={productImages[2]}
+                        src={productImages[2] as typeof productImages[number]}
                         alt="product-image"
                         width={500}
                         height={500}

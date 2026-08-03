@@ -1,6 +1,8 @@
 "use client";
+
+import type { Product } from "@/context/ProductContext";
 import { useProductContext } from "@/context/ProductContext";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   ChevronRight,
   ChevronLeft,
@@ -19,33 +21,46 @@ import Image from "next/image";
 import { productImages } from "@/assets/assets";
 import { useRouter } from "next/navigation";
 
-const ProductDetails = ({ id }) => {
+interface ProductDetailsProps {
+  id: string;
+}
+
+interface SimilarItem {
+  name: string;
+  price: string;
+  types: string;
+  rating: number;
+}
+
+const ProductDetails = ({ id }: ProductDetailsProps) => {
   const route = useRouter();
   const { products, loading } = useProductContext();
-  const [product, setProduct] = useState(null);
+  const [product, setProduct] = useState<Product | null>(null);
   const [quantity, setQuantity] = useState(5);
   const [selectedColor, setSelectedColor] = useState(0);
   const [selectedSize, setSelectedSize] = useState("Small");
   const [mainImageIndex, setMainImageIndex] = useState(0);
 
   useEffect(() => {
-    if (products && products.length > 0) {
-      const individualProduct = products.find((item) => item.id == id);
-      setProduct(individualProduct);
+    if (products.length > 0) {
+      const individualProduct = products.find(
+        (item) => String(item.id) === id,
+      );
+      setProduct(individualProduct ?? null);
     }
   }, [products, id]);
 
   const colors = ["#E3D7C5", "#A8C779", "#A6A6F3", "#F8C1F8", "#D9A098"];
   const sizes = ["Small", "Medium", "Large", "Extra Large", "XXL"];
 
-  const images = productImages;
+  const primaryImage = productImages[mainImageIndex] ?? productImages[0];
 
-  const similarItems = Array(6).fill({
+  const similarItems: SimilarItem[] = Array.from({ length: 6 }, () => ({
     name: "TDX Sinkers",
     price: "₹ 675.00",
     types: "5 types of shoes available",
     rating: 121,
-  });
+  }));
 
   return (
     <>
@@ -57,12 +72,12 @@ const ProductDetails = ({ id }) => {
 
       {!loading && (
         <div className="w-full">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0 py-4 sm:py-8 font-sans">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:py-10 lg:px-0 py-4 sm:py-8 font-sans">
             <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
               <div className="w-full lg:w-1/2 flex flex-col gap-4">
                 <div className="w-full aspect-4/5 bg-gray-100 rounded-2xl overflow-hidden relative">
                   <Image
-                    src={images[mainImageIndex]}
+                    src={primaryImage}
                     alt={product?.title || "Embrace Sideboard"}
                     fill
                     sizes="(max-width: 1024px) 100vw, 50vw"
