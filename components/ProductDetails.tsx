@@ -49,7 +49,7 @@ const ProductDetails = ({ id }: ProductDetailsProps) => {
       setProduct(individualProduct ?? null);
     }
   }, [products, id]);
-
+  
   const colors = ["#E3D7C5", "#A8C779", "#A6A6F3", "#F8C1F8", "#D9A098"];
   const sizes = ["Small", "Medium", "Large", "Extra Large", "XXL"];
 
@@ -72,7 +72,7 @@ const ProductDetails = ({ id }: ProductDetailsProps) => {
 
       {!loading && (
         <div className="w-full">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:py-10 lg:px-0 py-4 sm:py-8 font-sans">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6  lg:px-0 lg:py-10 py-4 sm:py-8 font-sans">
             <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
               <div className="w-full lg:w-1/2 flex flex-col gap-4">
                 <div className="w-full aspect-4/5 bg-gray-100 rounded-2xl overflow-hidden relative">
@@ -170,7 +170,7 @@ const ProductDetails = ({ id }: ProductDetailsProps) => {
                 <div className="mt-4 sm:mt-6 flex flex-wrap items-end gap-3">
                   <div className="flex flex-row items-center gap-6 sm:gap-15 flex-wrap sm:flex-nowrap">
                     <span className="text-2xl sm:text-3xl font-bold text-blue-900">
-                      ${product?.price}
+                      ${product?.price || "24"}
                     </span>
                     <div className="flex flex-col gap-1 mb-1">
                       <div className="flex flex-wrap items-center gap-2">
