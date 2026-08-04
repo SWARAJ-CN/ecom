@@ -78,7 +78,7 @@ const ProductDetails = ({ id }: ProductDetailsProps) => {
                 <div className="w-full aspect-4/5 bg-gray-100 rounded-2xl overflow-hidden relative">
                   <Image
                     src={primaryImage}
-                    alt={product?.title || "Embrace Sideboard"}
+                    alt={product?.title || "product name"}
                     fill
                     sizes="(max-width: 1024px) 100vw, 50vw"
                     className="w-full h-full object-cover"
